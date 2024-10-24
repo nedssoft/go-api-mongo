@@ -11,9 +11,9 @@ type DB struct {
 	Db *mongo.Database
 }
 
-func NewDB(mongoURI string, dbName string) (*DB, error) {
+func NewDB(mongoURI string, dbName string, ctx context.Context) (*DB, error) {
 	clinetOptions := options.Client().ApplyURI(mongoURI)
-	client, err := mongo.Connect(context.TODO(), clinetOptions)
+	client, err := mongo.Connect(ctx, clinetOptions)
 	if err != nil {
 		return nil, err
 	}
@@ -21,6 +21,7 @@ func NewDB(mongoURI string, dbName string) (*DB, error) {
 		Client: client,
 		Db: client.Database(dbName),
 	}
+	Init(db, ctx)
 	return db, nil
 }
 

@@ -12,7 +12,7 @@ import (
 func main() {
 	ctx := context.Background()
 	dbConfig := config.GetDBConfig()
-	db, err := db.NewDB(dbConfig.MongoURI, dbConfig.DBName)
+	db, err := db.NewDB(dbConfig.MongoURI, dbConfig.DBName, ctx)
 	if err != nil {
 		log.Fatal(err)
 	}

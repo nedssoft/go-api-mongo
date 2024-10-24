@@ -12,15 +12,14 @@ import (
 func SetupTestRouter() (*gin.Engine, *database.DB) {
 	gin.SetMode(gin.TestMode)
 	router := gin.Default()
-
+	ctx := context.Background()
   
 	api := router.Group("/api/v1")
-	db, err := database.NewDB("mongodb://localhost:27017", "test-go")
+	db, err := database.NewDB("mongodb://localhost:27017", "test-go", ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	ctx := context.Background()
 	routes := routes.NewRoutes(api, db, ctx)
 	routes.RegisterRoutes()
 	return router, db
