@@ -1,2 +1,5 @@
 .env
 bin/go-api-mongo
+
+tf/
+.DS_Store

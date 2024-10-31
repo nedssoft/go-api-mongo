@@ -1,0 +1,23 @@
+# generate buildspec.yaml
+
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      golang: 1.23
+    commands:
+      - go mod download
+  build:
+    commands:
+      - go build -o bin/main cmd/main.go
+  post_build:
+    commands:
+      - echo "Build completed on `date`"
+artifacts:
+  files:
+    - bin/main
+    - go.mod
+    - go.sum
+    - Procfile
+  
