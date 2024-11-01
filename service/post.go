@@ -87,9 +87,9 @@ func (s *PostService) UpdatePost(id primitive.ObjectID, payload *requests.PostUp
 		"body":   payload.Body,
 		"updated_at": time.Now(),
 	}
-	_, err := s.postCollection.UpdateOne(s.ctx, bson.M{"_id": id}, bson.M{"$set": post})
-	if err != nil {
-		return err
+	result := s.postCollection.FindOneAndUpdate(s.ctx, bson.M{"_id": id}, bson.M{"$set": post})
+	if result.Err() != nil {
+		return result.Err()
 	}
 	return nil
 }

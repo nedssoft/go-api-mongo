@@ -132,3 +132,5 @@ func (s *UserService) GetUserById(id primitive.ObjectID) (*models.User, error) {
 	}
 	return &user, nil
 }
+
+

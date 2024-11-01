@@ -126,7 +126,7 @@ func (c *PostController) UpdatePost(gn *gin.Context) {
 	}
 	if err := c.PostService.UpdatePost(pid, post, user.ID); err != nil {
 		log.Println(err)
-		gn.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update post"})
+		gn.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to update post"})
 		return
 	}
 	gn.JSON(http.StatusOK, gin.H{"post": post})
