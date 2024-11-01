@@ -1,5 +1,7 @@
 .env
 bin/go-api-mongo
 
-tf/
+tf/.terraform
+tf/.terraform.lock.hcl
+tf/terraform.tfstate.d
 .DS_Store
